@@ -13,7 +13,7 @@ import GoogleSignIn
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,  GIDSignInDelegate{
 
     var window: UIWindow?
 
@@ -30,22 +30,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         return true
     }
-    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
-        -> Bool {
-            return GIDSignIn.sharedInstance().handle(url,
-                                                     sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
-                                                     annotation: [:])
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let err = error {
+            print("Failed to log into Google: ", err)
+            return
+        }
+        
+        print("Succesfully logged in to google: ", user)
     }
     
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url,
-                                                 sourceApplication: sourceApplication,
-                                                 annotation: annotation)
-        
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
         let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options [UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
-        
+        GIDSignIn.sharedInstance().handle(url,
+                                          sourceApplication:options [UIApplicationOpenURLOptionsKey.sourceApplication] as! String!,
+                                          annotation: options[UIApplicationOpenURLOptionsKey.annotation])
         return handled
         
     }

@@ -12,7 +12,7 @@ import Firebase
 import GoogleSignIn
 
 
-class ViewController: UIViewController, FBSDKLoginButtonDelegate {
+class ViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDelegate{
     /**
      Sent to the delegate when the button was used to login.
      - Parameter loginButton: the sender
@@ -25,7 +25,24 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     
+        setupFacebookButtons()
+        setupGooglebuttons()
         
+    
+    }
+    fileprivate func setupGooglebuttons()
+    {
+        let googleButton = GIDSignInButton()
+        googleButton.frame = CGRect(x: 16, y: 116 + 66, width: view.frame.width - 32, height: 50)
+        
+        view.addSubview(googleButton)
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+
+    }
+    
+    fileprivate func setupFacebookButtons()
+    {
         let loginButton = FBSDKLoginButton()
         view.addSubview(loginButton)
         //frame's are obselete, please use constraints instead
@@ -44,15 +61,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         view.addSubview(customFBButton)
         customFBButton.addTarget(self, action: #selector(handleCustomFBLogin), for: .touchUpInside)
-    
-    //Google sign in
-        
-        
-    
-    
-    
-    
-    
     }
     
     func handleCustomFBLogin() {
