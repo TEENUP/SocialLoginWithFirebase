@@ -43,8 +43,28 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     func handleCustomFBLogin() {
-        
+        FBSDKLoginManager().logIn(withReadPermissions: ["email"], from: self) {
+            (result, err )  in
+            if err != nil {
+                print("Custom FB Login failed: ", err)
+                return
+            }
+            
+            self.showEmailAddress()
+        }
     }
+    
+    func showEmailAddress() {
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start {
+            (connection, result, err) in
+            if (err != nil) {
+                print("Failed to start graph request:", err)
+                return
+            }
+            print(result)
+        }
+    }
+    
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("Did log out of facebook")
