@@ -30,6 +30,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         // facebook login button
         loginButton.frame = CGRect(x:16, y:50, width: view.frame.width - 32, height: 50)
         loginButton.delegate = self
+        loginButton.readPermissions = ["email", "public_profile"]
         
         
         let customFBButton = UIButton(type: .system)
@@ -41,6 +42,15 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         view.addSubview(customFBButton)
         customFBButton.addTarget(self, action: #selector(handleCustomFBLogin), for: .touchUpInside)
+    
+    //Google sign in
+        
+        
+    
+    
+    
+    
+    
     }
     
     func handleCustomFBLogin() {
@@ -55,29 +65,15 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
     }
     
-    func showEmailAddress() {
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start {
-            (connection, result, err) in
-            if (err != nil) {
-                print("Failed to start graph request:", err)
-                return
-            }
-            print(result)
-        }
-    }
-    
-    
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("Did log out of facebook")
     }
     
-
-    public func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         if (error != nil) {
             print(error)
             return
         }
-    
         print("Successfully logged in with facebook...")
         
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start {
@@ -92,11 +88,34 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         
     }
 
-
-
-
-
-
+    
+    func showEmailAddress() {
+        let accessToken = FBSDKAccessToken.current()
+        guard let accessTokenString = accessToken?.tokenString else { return }
+        
+        let credential = FacebookAuthProvider.credential(withAccessToken:(accessToken?.tokenString)!)
+        
+        
+        Auth.auth().signIn(with: credential, completion:{ (user, error) in
+            if error != nil {
+                print("Something went wrong with our FB user: ", error)
+                return
+            }
+            
+            print("Successfully logged in with our user: ", user )
+       
+        })
+        
+        
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start {
+            (connection, result, err) in
+            if (err != nil) {
+                print("Failed to start graph request:", err)
+                return
+            }
+            print(result)
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
