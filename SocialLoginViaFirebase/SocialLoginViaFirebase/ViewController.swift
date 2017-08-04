@@ -26,11 +26,24 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         let loginButton = FBSDKLoginButton()
         view.addSubview(loginButton)
         //frame's are obselete, please use constraints instead
+        // facebook login button
         loginButton.frame = CGRect(x:16, y:50, width: view.frame.width - 32, height: 50)
-        
         loginButton.delegate = self
+        
+        
+        let customFBButton = UIButton(type: .system)
+        customFBButton.backgroundColor = .blue
+        customFBButton.frame = CGRect(x: 16, y: 116, width: view.frame.width - 32, height: 50)
+        customFBButton.setTitle("Custom FB Login here", for: .normal)
+        customFBButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        customFBButton.setTitleColor(.white  , for: .normal)
+        
+        view.addSubview(customFBButton)
+        customFBButton.addTarget(self, action: #selector(handleCustomFBLogin), for: .touchUpInside)
+    }
     
-    
+    func handleCustomFBLogin() {
+        
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
@@ -45,6 +58,17 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
     
         print("Successfully logged in with facebook...")
+        
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start {
+            (connection, result, err) in
+            
+            if err != nil {
+                print("Failed to start graph reqest:", err)
+                return
+            }
+            print(result)
+        }
+        
     }
 
 
