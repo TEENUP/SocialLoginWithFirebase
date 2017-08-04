@@ -17,6 +17,7 @@
 		DD328F921F31C7A60057F9B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD328F901F31C7A60057F9B5 /* LaunchScreen.storyboard */; };
 		DD328F9D1F31C7A80057F9B5 /* SocialLoginViaFirebaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD328F9C1F31C7A80057F9B5 /* SocialLoginViaFirebaseTests.swift */; };
 		DD328FA81F31C7A80057F9B5 /* SocialLoginViaFirebaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD328FA71F31C7A80057F9B5 /* SocialLoginViaFirebaseUITests.swift */; };
+		DD43DFE01F345C3000BE5FDF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD43DFDF1F345C3000BE5FDF /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		DD328FA31F31C7A80057F9B5 /* SocialLoginViaFirebaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocialLoginViaFirebaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD328FA71F31C7A80057F9B5 /* SocialLoginViaFirebaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginViaFirebaseUITests.swift; sourceTree = "<group>"; };
 		DD328FA91F31C7A80057F9B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD43DFDF1F345C3000BE5FDF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE33B7F114E3FEC9B8E1467A /* Pods-SocialLoginViaFirebaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialLoginViaFirebaseTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SocialLoginViaFirebaseTests/Pods-SocialLoginViaFirebaseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EB33D8BDDBA810B41C9E60FF /* Pods-SocialLoginViaFirebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialLoginViaFirebase.release.xcconfig"; path = "Pods/Target Support Files/Pods-SocialLoginViaFirebase/Pods-SocialLoginViaFirebase.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +145,7 @@
 				DD328F8E1F31C7A60057F9B5 /* Assets.xcassets */,
 				DD328F901F31C7A60057F9B5 /* LaunchScreen.storyboard */,
 				DD328F931F31C7A60057F9B5 /* Info.plist */,
+				DD43DFDF1F345C3000BE5FDF /* GoogleService-Info.plist */,
 			);
 			path = SocialLoginViaFirebase;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 			files = (
 				DD328F921F31C7A60057F9B5 /* LaunchScreen.storyboard in Resources */,
 				DD328F8F1F31C7A60057F9B5 /* Assets.xcassets in Resources */,
+				DD43DFE01F345C3000BE5FDF /* GoogleService-Info.plist in Resources */,
 				DD328F8D1F31C7A60057F9B5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -696,6 +700,7 @@
 				DD328FAE1F31C7A80057F9B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DD328FAF1F31C7A80057F9B5 /* Build configuration list for PBXNativeTarget "SocialLoginViaFirebaseTests" */ = {
 			isa = XCConfigurationList;
@@ -704,6 +709,7 @@
 				DD328FB11F31C7A80057F9B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DD328FB21F31C7A80057F9B5 /* Build configuration list for PBXNativeTarget "SocialLoginViaFirebaseUITests" */ = {
 			isa = XCConfigurationList;
@@ -712,6 +718,7 @@
 				DD328FB41F31C7A80057F9B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

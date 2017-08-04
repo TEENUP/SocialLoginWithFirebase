@@ -8,6 +8,7 @@
 
 import UIKit
 import FBSDKLoginKit
+import Firebase
 
 class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     /**
