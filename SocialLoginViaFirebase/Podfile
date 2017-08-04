@@ -11,6 +11,7 @@ pod 'FBSDKShareKit'
 pod 'FBSDKLoginKit'
 
 pod ‘Firebase/Auth’
+pod ‘GoogleSignIn’
 
   target 'SocialLoginViaFirebaseTests' do
     inherit! :search_paths

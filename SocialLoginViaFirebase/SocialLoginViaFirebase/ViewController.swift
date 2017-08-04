@@ -10,6 +10,7 @@ import UIKit
 import FBSDKLoginKit
 import Firebase
 
+
 class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     /**
      Sent to the delegate when the button was used to login.
@@ -54,6 +55,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     func handleCustomFBLogin() {
+        
         FBSDKLoginManager().logIn(withReadPermissions: ["email"], from: self) {
             (result, err )  in
             if err != nil {
@@ -93,7 +95,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         let accessToken = FBSDKAccessToken.current()
         guard let accessTokenString = accessToken?.tokenString else { return }
         
-        let credential = FacebookAuthProvider.credential(withAccessToken:(accessToken?.tokenString)!)
+        let credential = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
         
         
         Auth.auth().signIn(with: credential, completion:{ (user, error) in
