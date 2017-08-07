@@ -38,6 +38,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate,  GIDSignInDelegate{
         }
         
         print("Succesfully logged in to google: ", user)
+        guard let idToken = user.authentication.idToken  else {
+            return
+        }
+        guard let accessToken = user.authentication.accessToken else {
+            return
+        }
+        let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+        Auth.auth().signIn(with: credentials) { (user, error) in
+            if let error = error {
+                print("there is some problem signing in wit google", error)
+                return
+            }
+            guard let uid = user?.uid else { return }
+             print("successfully signed in with google", uid)
+        }
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {

@@ -37,8 +37,21 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDel
         
         view.addSubview(googleButton)
         
+        let customButton = UIButton(type: .system)
+        customButton.frame = CGRect(x: 16, y: 116 + 66 + 66, width: view.frame.width - 32, height: 50)
+        customButton.backgroundColor = .orange
+        customButton.setTitle("Custom Google sign In", for: .normal)
+        customButton.addTarget(self, action: #selector(handleCustomGoogleSignIn), for: .touchUpInside)
+        customButton.setTitleColor(.white, for: .normal)
+        customButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        view.addSubview(customButton)
+        
         GIDSignIn.sharedInstance().uiDelegate = self
 
+    }
+    
+    func handleCustomGoogleSignIn() {
+        GIDSignIn.sharedInstance().signIn()
     }
     
     fileprivate func setupFacebookButtons()
